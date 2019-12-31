@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -13,7 +14,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'ELZAMALEK'),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +175,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SettingServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
+
+
 
     ],
 
