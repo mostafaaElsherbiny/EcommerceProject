@@ -74,7 +74,7 @@ x
 
 @endforeach @endif
 @if ($warnings) @foreach($warnings as $key=>$value)
-<div class="alert alert-warning alert-dismissible"
+<div class="alert alert-warning alert-dismissible"></div>
 <button class="close" type="button" data-dismiss="alert">
 x
 </button>

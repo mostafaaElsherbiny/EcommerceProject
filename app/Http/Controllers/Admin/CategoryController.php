@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BaseController;
 
 
-
 class CategoryController extends BaseController
 {
     /**
@@ -48,9 +47,21 @@ class CategoryController extends BaseController
            $this->setPageTitle('Categories','Create Category');
            return view('admin.categories.create',compact('categories'));
        }
+
+
+
+       /**
+        * @param Request $request
+        * @return \Illuminate\Http\RedirectResponse;
+        * @throws \Illuminate\Validation\ValidationException;
+
+        */
+
+
        public function store(Request $request){
       $this->validate($request,[
         'name'=>'required|max:191',
+        'description'=>'required',
         'parent_id'=>'required|not_in:0',
         'image'=>'mimes:jpg,jpeg,png|max:1000',
       ]);
@@ -61,6 +72,29 @@ class CategoryController extends BaseController
         }
         return $this->responseRedirect('admin.categories.index','Category Added succssfully','success',false,false);
        }
+
+
+
+
+
+
+       public function edit($id){
+          $targetCategory= $this->categoryRepository->findCategoryById($id);
+          $categories= $this->categoryRepository->listCategories();
+
+          $this->setPageTitle('Categories','Edit Category : '.$targetCategory->name);
+
+          return view('admin.categories.edit',compact('categories','targetCategory'));
+
+
+
+
+
+
+
+       }
+
+
 }
 
 

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-use Config;
+
+use Illuminate\Support\Facades\Config;
 
 use Illuminate\Database\Eloquent\Model;
 

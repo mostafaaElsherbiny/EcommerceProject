@@ -58,7 +58,7 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
       */
      public function findCategoryById(int $id){
          try{
-         $this->findOneOrFail($id);
+           return $this->findOneOrFail($id);
          }catch(ModelNotFoundException $e){
             throw new ModelNotFoundException($e);
          }
