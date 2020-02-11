@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
 Route::group(['prefix' => 'admin'], function () {
 Route::get('login','Admin\LoginController@showLoginForm')->name('admin.login');
 Route::post('login','Admin\LoginController@login')->name('admin.login.post');
@@ -43,5 +45,5 @@ Route::group(['prefix' => 'categories'], function () {
 
 
 
-?>
+
 

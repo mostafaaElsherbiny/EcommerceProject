@@ -23,6 +23,8 @@ class CreateCategoriesTable extends Migration
             $table->boolean('menu')->default(1);
             $table->string('image')->nullable();
             $table->timestamps();
+            
+
 
         });
     }
