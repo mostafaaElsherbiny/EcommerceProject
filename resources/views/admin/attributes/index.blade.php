@@ -9,6 +9,7 @@
         </div>
         <a href="{{ route('admin.attributes.create') }}" class="btn btn-primary pull-right">Add Attribute</a>
     </div>
+    @include('admin.partials.flash')
 <div class="tile">
 
             <table class="table table-hover table-bordered" id="sampleTable">
