@@ -7,6 +7,8 @@ use App\Contracts\CategoryContract;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BaseController;
 
+use Illuminate\Http\RedirectResponse;
+
 
 class CategoryController extends BaseController
 {
@@ -74,7 +76,10 @@ class CategoryController extends BaseController
 
 
 
-
+        /**
+         * @param $id
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
 
 
        public function edit($id){
@@ -87,6 +92,14 @@ class CategoryController extends BaseController
 
        }
 
+
+
+
+       /**
+        * @param   Request $request
+        *@return \Illuminate\Http\RedirectResponse;
+        *@throws \Illuminate\Validation\ValidationException;
+        */
        public function update(Request $request){
             $this->validate($request,[
                 'name'         =>'required|max:191',
@@ -104,6 +117,13 @@ class CategoryController extends BaseController
        }
 
 
+
+
+
+            /**
+            * @param $id
+            * @return \Illuminate\Http\RedirectResponse
+            */
        public function delete($id){
 
         $category=$this->categoryRepository->deleteCategory($id);

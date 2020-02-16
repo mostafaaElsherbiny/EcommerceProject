@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttributesTable extends Migration
+class CreateAttributeValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('attribute_values', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->enum('frontend_type',['select','radio','text','text_area']);
-            $table->boolean('is_filterable')->default(0);
-            $table->boolean('is_required')->default(0);
+            $table->bigInteger('attribute_id')->unsigned();
+            $table->foreign('attribute_id')->references('id')->on('attributes');
+            $table->text('value');
+            $table->decimal('price',2)->nullable();
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -31,6 +30,6 @@ class CreateAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('attribute_values');
     }
 }
