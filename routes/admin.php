@@ -51,6 +51,12 @@ Route::group(['prefix' => 'attributes'], function () {
     Route::get('/{id}/delete','Admin\AttributeController@delete')->name('admin.attributes.delete');
 
 
+    Route::post('/get-values', 'AttributeValueController@getValues');
+    Route::post('/add-values', 'AttributeValueController@addValues');
+    Route::post('/update-values', 'AttributeValueController@updateValues');
+    Route::post('/delete-values', 'AttributeValueController@deleteValues');
+
+
 });
 
 
