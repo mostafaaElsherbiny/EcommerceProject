@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Contracts\AttributeContract;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\AttributeRepository;
+
 
 class AttributeController extends BaseController
 {

@@ -26,22 +26,20 @@
                             <label class="control-label" for="description">Description</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" rows="4" name="description" id="description">
 
-                        
+
                             </textarea>
                             @error('description'){{$message}} @enderror
                         </div>
                         <div class="form-group">
-                            <label for="parent">Parent Category <span class="m-l-5 text-danger"> *</span></label>
-                            <select id="parent" class="form-control custom-select mt-15 @error('parent_id') is-invalid @enderror" name="parent_id">
-                                <option value="0">Select a parent category</option>
-                               @foreach($categories as $category)
-                               <option value="{{ $category->id}} ">
-                                    {{ $category->name }}
-                               </option>
-                               @endforeach
-                            </select>
-                            @error('parent_id') {{ $message }} @enderror
-                        </div>
+    <label for="parent">Parent Category <span class="m-l-5 text-danger"> *</span></label>
+    <select id=parent class="form-control custom-select mt-15 @error('parent_id') is-invalid @enderror" name="parent_id">
+        <option value="0">Select a parent category</option>
+        @foreach($categories as $key => $category)
+            <option value="{{ $key }}"> {{ $category }} </option>
+        @endforeach
+    </select>
+    @error('parent_id') {{ $message }} @enderror
+</div>
                         <div class="form-group">
                             <div class="form-check">
                                 <label class="form-check-label">

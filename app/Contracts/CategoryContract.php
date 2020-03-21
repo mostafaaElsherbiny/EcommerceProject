@@ -13,6 +13,10 @@ interface CategoryContract{
      * @param array  $columns
      * @return mixed
      */
+    /**
+ * @return mixed
+ */
+      public function treeList();
     public function listCategories(string $order='id',string $sort='desc',array $columns=['*']
     );
     /**
@@ -39,4 +43,5 @@ interface CategoryContract{
 
     public function deleteCategory($id);
 
+    public function findBySlug($slug);
 };

@@ -28,19 +28,20 @@
                   @error('description') {{$message}} @enderror
                 </div>
                 <div class="form-group">
-                <label for="parent">Parent Category <span class="m-l-5 text-danger"> *</span></label>
-                            <select id="parent" class="form-control custom-select mt-15 @error('parent_id') is-invalid @enderror" name="parent_id">
-                                <option value="0">Select a parent category</option>
-                                @foreach($categories as  $category)
-                                    @if ($targetCategory->parent_id == $category->id)
-                                        <option value="{{ $category->id }}" selected> {{ $category }} </option>
-                                    @else
-                                        <option value="{{ $category->id }}"> {{ $category }} </option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            @error('parent_id') {{ $message }} @enderror
-                </div>
+    <label for="parent">Parent Category <span class="m-l-5 text-danger"> *</span></label>
+    <select id=parent class="form-control custom-select mt-15 @error('parent_id') is-invalid @enderror" name="parent_id">
+        <option value="0">Select a parent category</option>
+        @foreach($categories as $key => $category)
+            @if ($targetCategory->parent_id == $key)
+                <option value="{{ $key }}" selected> {{ $category }} </option>
+            @else
+                <option value="{{ $key }}"> {{ $category }} </option>
+            @endif
+        @endforeach
+    </select>
+    @error('parent_id') {{ $message }} @enderror
+</div>
+
                 <div class="form-group">
 
                   <div class="form-check">
@@ -72,7 +73,7 @@
                                 <div class="col-md-10">
                                     <label class="control-label">Category Image</label>
                                     <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"/>
-                                    
+
                                     @error('image') {{ $message }} @enderror
                                 </div>
                   </div>

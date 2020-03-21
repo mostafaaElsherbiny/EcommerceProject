@@ -18,11 +18,9 @@ use Illuminate\Support\Facades\Route;
 require ('admin.php');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/','site.pages.homepage');
 
-
+Auth::routes();
 
 
 // Route::get('/mos', function (Category $category) {
@@ -37,4 +35,11 @@ Route::get('/', function () {
 //         throw new ModelNotFoundException($e);
 //     }
 // });
+
+Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
+Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
+Route::post('/product/add/cart','Site\productController@addToCart')->name('product.add.cart');
+Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
+Route::get('/cart/item/{id}/remove','Site\CartController@removeItem')->name('checkout.cart.remove');
+Route::get('/cart/clear','Site\CartController@clearCart')->name('checkout.cart.clear');
 

@@ -44,7 +44,7 @@ class CategoryController extends BaseController
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
        public function create(){
-           $categories=$this->categoryRepository->listCategories('id','asc');
+        $categories = $this->categoryRepository->treeList();
 
            $this->setPageTitle('Categories','Create Category');
            return view('admin.categories.create',compact('categories'));
@@ -64,7 +64,7 @@ class CategoryController extends BaseController
       $this->validate($request,[
         'name'=>'required|max:191',
         'parent_id'=>'required|not_in:0',
-        'image'=>'mimes:jpg,jpeg,png|max:1000',
+        'image'=>'image|max:1024',
       ]);
       $params=$request->except('_token');
       $category=$this->categoryRepository->createCategory($params);
@@ -84,7 +84,7 @@ class CategoryController extends BaseController
 
        public function edit($id){
           $targetCategory= $this->categoryRepository->findCategoryById($id);
-          $categories= $this->categoryRepository->listCategories();
+          $categories = $this->categoryRepository->treeList();
 
           $this->setPageTitle('Categories','Edit Category : '.$targetCategory->name);
 

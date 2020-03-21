@@ -51,19 +51,55 @@ Route::group(['prefix' => 'attributes'], function () {
     Route::get('/{id}/delete','Admin\AttributeController@delete')->name('admin.attributes.delete');
 
 
-    Route::post('/get-values', 'AttributeValueController@getValues');
-    Route::post('/add-values', 'AttributeValueController@addValues');
-    Route::post('/update-values', 'AttributeValueController@updateValues');
-    Route::post('/delete-values', 'AttributeValueController@deleteValues');
+    Route::post('/get-values', 'Admin\AttributeValueController@getValues');
+    Route::post('/add-values', 'Admin\AttributeValueController@addValues');
+    Route::post('/update-values', 'Admin\AttributeValueController@updateValues');
+    Route::post('/delete-values', 'Admin\AttributeValueController@deleteValues');
 
 
 });
 
 
+Route::group(['prefix' => 'brands'], function () {
 
+    Route::get('/', 'Admin\BrandController@index')->name('admin.brands.index');
+    Route::get('/create', 'Admin\BrandController@create')->name('admin.brands.create');
+    Route::post('/store', 'Admin\BrandController@store')->name('admin.brands.store');
+    Route::get('/{id}/edit', 'Admin\BrandController@edit')->name('admin.brands.edit');
+    Route::post('/update', 'Admin\BrandController@update')->name('admin.brands.update');
+    Route::get('/{id}/delete', 'Admin\BrandController@delete')->name('admin.brands.delete');
 
+});
+Route::group(['prefix' => 'products'], function () {
 
+    Route::get('/', 'Admin\ProductController@index')->name('admin.products.index');
+    Route::get('/create', 'Admin\ProductController@create')->name('admin.products.create');
+    Route::post('/store', 'Admin\ProductController@store')->name('admin.products.store');
+    Route::get('/{id}/edit', 'Admin\ProductController@edit')->name('admin.products.edit');
+    Route::post('/update', 'Admin\ProductController@update')->name('admin.products.update');
+    Route::get('/{id}/delete', 'Admin\ProductController@delete')->name('admin.products.delete');
+    Route::post('/images/upload','Admin\ProductImageController@upload')->name('admin.products.images.upload');
+    Route::get('/images/{id}/delete','Admin\ProductImageController@delete')->name('admin.products.images.delete');
 
+    ///////////////////////////////////////////////////
+// load attributes on the page load
+    Route::get('attributes/load','Admin\ProductAttributeController@loadAttributes');
+// load product attributes on the load page
+
+    Route::post('attributes','Admin\ProductAttributeController@productAttributes');
+
+// load option values for attribute
+
+    Route::Post('attributes/values','Admin\ProductAttributeController@loadValues');
+
+// add product attribute to the current product
+    Route::post('attributes/add','Admin\ProductAttributeController@addAttribute');
+
+// Delete product attribute from the current product
+
+    Route::Post('attributes/delete','Admin\ProductAttributeController@deleteAttribute');
+
+});
 
 
 });

@@ -14,9 +14,20 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array
+     * $table->bigIncrements('id');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('address',255);
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'email', 'password',
+        'last_name', 'address', 'city','country'
     ];
 
     /**
@@ -36,4 +47,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getFullNameAttribute(){
+        return $this->first_name.' ' .$this->last_name;
+    }
 }

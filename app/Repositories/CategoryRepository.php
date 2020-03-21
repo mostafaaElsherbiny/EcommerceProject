@@ -94,28 +94,6 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
      public function updateCategory(array $params){
          $category=$this->findCategoryById($params['id']);
          $collection=collect($params);
@@ -150,6 +128,25 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
          $category->delete();
          return $category;
      }
+
+     public function treeList()
+     {
+         return Category::orderByRaw('-name ASC')
+             ->get()
+             ->nest()
+             ->listsFlattened('name');
+     }
+
+
+     public function findBySlug($slug)
+     {
+         return Category::with('products')
+         ->where('slug',$slug)
+         ->where('menu',1)
+         ->first();
+     }
+
+
 
 
  }

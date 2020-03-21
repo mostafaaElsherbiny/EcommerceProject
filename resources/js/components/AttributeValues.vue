@@ -1,5 +1,5 @@
 <template>
-    <div id="">
+    <div id="app">
         <div class="tile">
             <h3 class="tile-title">Attribute Values</h3>
             <hr>
@@ -57,7 +57,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="value in values" :key="value">
+                        <tr v-for="value in values" >
                             <td style="width: 25%" class="text-center">{{ value.id}}</td>
                             <td style="width: 25%" class="text-center">{{ value.value}}</td>
                             <td style="width: 25%" class="text-center">{{ value.price}}</td>
